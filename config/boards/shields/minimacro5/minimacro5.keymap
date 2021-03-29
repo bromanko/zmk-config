@@ -7,7 +7,8 @@
 
         default_layer {
             bindings = <
-    &kp S &kp T &kp L &kp N &kp E
+    // Rooms mute audio, Rooms mute video, Zoom mute audio, Zoom mute video
+    &kp LA(M) &kp LA(V) &kp M &kp V &kp K_MUTE
             >;
         };
     };
