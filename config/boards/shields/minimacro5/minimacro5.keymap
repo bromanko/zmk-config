@@ -2,6 +2,11 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder_4>;
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -10,6 +15,8 @@
     // Rooms mute audio, Rooms mute video, Zoom mute audio, Zoom mute video
     &kp LA(M) &kp LA(V) &kp M &kp V &kp K_MUTE
             >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };

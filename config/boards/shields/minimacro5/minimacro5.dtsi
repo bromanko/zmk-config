@@ -1,0 +1,59 @@
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        label = "KSCAN";
+
+        input-gpios
+            = <&pro_micro_a 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&pro_micro_d 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&pro_micro_d 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&pro_micro_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            ;
+    };
+
+    // encoder_0: encoder_0 {
+    //     compatible = "alps,ec11";
+    //     label = "Encoder 0";
+    //     a-gpios = <&pro_micro_a 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    //     b-gpios = <&pro_micro_ (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    //     resolution = <4>;
+    // };
+
+    // encoder_1: encoder_1 {
+    //     compatible = "alps,ec11";
+    //     label = "Encoder 1";
+    //     a-gpios = <&pro_micro_ (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    //     b-gpios = <&pro_micro_a 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    //     resolution = <4>;
+    // };
+
+    encoder_2: encoder_2 {
+        compatible = "alps,ec11";
+        label = "Encoder 2";
+        a-gpios = <&pro_micro_d 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro_a 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        resolution = <4>;
+    };
+
+    encoder_3: encoder_3 {
+        compatible = "alps,ec11";
+        label = "Encoder 3";
+        a-gpios = <&pro_micro_d 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro_d 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        resolution = <4>;
+    };
+
+    encoder_4: encoder_4 {
+        compatible = "alps,ec11";
+        label = "Encoder 4";
+        a-gpios = <&pro_micro_d 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro_d 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        resolution = <4>;
+    };
+};
