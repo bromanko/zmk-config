@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: zmkfirmware/zmk-build-arm:2.4
+      image: zmkfirmware/zmk-build-arm:2.5
     name: Build
     steps:
       - name: Checkout
@@ -34,7 +34,7 @@ jobs:
       - name: West Zephyr export
         run: west zephyr-export
       - name: West Build (miniMACRO5)
-        run: west build -s zmk/app -b nice_nano -- -DSHIELD=minimacro5 -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+        run: west build -s zmk/app -b nice_nano -- -DSHIELD=minimacro5 -DZMK_CONFIG="${GITHUB_WORKSPACE}/config/minimacro5"
       - name: miniMACRO5 DTS File
         if: ${{ always() }}
         run: cat -n build/zephyr/nice_nano.dts.pre.tmp
@@ -45,5 +45,20 @@ jobs:
       - name: Archive (miniMACRO5)
         uses: actions/upload-artifact@v2
         with:
-          name: firmware
+          name: minimacro5-nice-nano-firmware
           path: minimacro5_nice_nano.uf2
+
+      - name: West Build (Kyria Left)
+        run: west build -s zmk/app -b nice_nano -- -DSHIELD=kyria_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config/kyria"
+      - name: Kyria DTS File
+        if: ${{ always() }}
+        run: cat -n build/zephyr/nice_nano.dts.pre.tmp
+      - name: Kyria Kconfig file
+        run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
+      - name: Rename zmk.uf2
+        run: cp build/zephyr/zmk.uf2 kyria_left_nice_nano.uf2
+      - name: Archive (Kyria Left)
+        uses: actions/upload-artifact@v2
+        with:
+          name: kyria-left-nice-nano-firmware
+          path: kyria_left-nice_nano.uf2
